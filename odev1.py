@@ -3,7 +3,7 @@
 
 # # YZM 411 Bilgisayarlı Görü — Ödev 1: Renk, Aydınlatma ve Örnekleme
 # 
-# **Öğrenci:** Ad Soyad — **No:** OgrenciNo
+# **Öğrenci:** Muhammed Emin Erdağ — **No:** 230212013
 # 
 # Bu defter, kendi kurduğum masaüstü sahnesinin üç fotoğrafı (normal ışık, gölge, farklı lamba) üzerinde dört deneyi çalıştırır.
 # Her deneyden **önce** yazılmış tahmin, ardından ölçüm ve en sonda *“Ne gördüm, neden olabilir, nasıl kontrol ederim?”* yanıtı bulunur.
@@ -564,7 +564,7 @@ plt.tight_layout(); plt.savefig(OUT / "fig3_parlaklik_gama.png", bbox_inches="ti
 # **Ne gördüm, neden olabilir, nasıl kontrol ederim?**
 # 
 # 
-# - **Ne gördüm:** Ortalama 111,32 iken b = +40 sonrası **151,30** oldu, yani tam +39,98. 255'te kırpılan kanal değerlerinin oranı yalnızca %0,39. Kırpılmayı ve beyaz kâğıdın en çok etkileneceğini öngören tahminim **tutmadı**.
+# - **Ne gördüm:** Ortalama 111,32 iken b = +40 sonrası **151,30** oldu, yani tam +39,98. 215'i aşıp 255'te kırpılan kanal değerlerinin oranı yalnızca %0,39. Kırpılmayı ve beyaz kâğıdın en çok etkileneceğini öngören tahminim **tutmadı**.
 #   Gamada yön doğruydu (γ = 0,5 açtı, γ = 2,0 kararttı), ama ortalamaya formülü uygulayarak yaptığım tahmin **tutmadı**: γ = 0,5 için 168,5 bekledim, 162,2 ölçtüm; γ = 2,0 için 48,6 bekledim, 60,2 ölçtüm.
 #   Tek değer kontrolü beklendiği gibi: 64 → 127,7 (γ = 0,5) ve 64 → 16,1 (γ = 2,0).
 # - **Neden olabilir:** Otomatik pozlama, beyaz kâğıdı bile ~190 civarında tuttu (kartta P99 = 217). 215'i aşan değer çok az olduğu için +40 kaydırması neredeyse hiç kırpılmadı.
@@ -654,7 +654,7 @@ plt.tight_layout(); plt.savefig(OUT / "fig4_kucultme.png", bbox_inches="tight");
 # 
 # - **Ne gördüm:** Karttaki harflerin ortanca yüksekliği ≈ 12 px; 1/4 küçültmede ≈ 3 px'e indi ve iki yöntemde de "THE UNITED STATES PLAYING CARD COMPANY" okunamaz oldu. Tahminim **tuttu**.
 #   `INTER_NEAREST` kartın ince keten dokusunu çapraz damalı **sahte bir desene** çevirdi, harfleri kopuk noktalara böldü ve kontrastı korudu (std 48,7). Bu küçük görüntünün Laplace varyansı AREA'nınkinin 3,3 katı: bu keskinlik değil, örtüşmeden (aliasing) gelen sahte yüksek frekans.
-#   `INTER_AREA` dokuyu tamamen yok etti ve yazıyı griye çevirdi: mürekkep P1 31 → 49, kâğıt P99 217 → 200, std 48,6 → 41,4. Sahte desen üretmedi.
+#   `INTER_AREA` dokuyu tamamen yok etti ve yazıyı griye çevirdi: mürekkep P1 (en koyu %1) 31 → 49, kâğıt P99 (en açık %1) 217 → 200, std 48,6 → 41,4. Sahte desen üretmedi.
 #   İki küçük görüntü arasındaki ortalama fark 15,4 gri düzey.
 # - **Neden olabilir:** 1/4 örneklemede temsil edilebilen en yüksek frekans 0,125 devir/pikseldir; özgün kesitteki enerjinin **%21,6'sı** bu sınırın üstünde.
 #   NEAREST bu frekansları süzmeden her 4×4 bloktan tek piksel aldığı için onları düşük frekanslı sahte desenlere katlar (örtüşme). AREA bloğu ortalayarak bu frekansları önce siler.

@@ -1,5 +1,7 @@
 # YZM 411 Bilgisayarlı Görü — Ödev 1: Renk, Aydınlatma ve Örnekleme
 
+**Öğrenci:** Muhammed Emin Erdağ — **No:** 230212013
+
 Kendi kurduğum masaüstü sahnesinin üç fotoğrafında (normal ışık, gölge, farklı lamba) şu dört konuyu ölçerek inceledim:
 
 | Hedef | Deney | Ana bulgu |
@@ -9,7 +11,7 @@ Kendi kurduğum masaüstü sahnesinin üç fotoğrafında (normal ışık, gölg
 | H3 | Parlaklık kaydırması (b = +40) ve gama (γ = 0,5 / 2,0) | Kırpılma neredeyse hiç olmadı (%0,39). Gama ortalaması Jensen eşitsizliği nedeniyle `255·(m/255)^γ`'dan saptı. |
 | H4 | 1/4 küçültme (`INTER_NEAREST` / `INTER_AREA`) | Harfler 12 px'ten 3 px'e indi. NEAREST sahte desen üretti, AREA yazıyı griye çevirdi; büyütme ayrıntıyı geri getirmedi. |
 
-📄 **Rapor (PDF, 2 sayfa):** [`rapor/YZM411_Odev1_Rapor.pdf`](rapor/YZM411_Odev1_Rapor.pdf)
+📄 **Rapor (PDF, 2 sayfa):** [`rapor/Muhammed_Emin_Erdag_Odev.pdf`](rapor/Muhammed_Emin_Erdag_Odev.pdf) — LaTeX kaynağı: [`rapor/overleaf/main.tex`](rapor/overleaf/main.tex)
 📊 **Tahmin–ölçüm tablosu:** [`results/sonuc_tablosu.csv`](results/sonuc_tablosu.csv)
 
 ![Fotoğraflar ve maskeler](outputs/fig5_rapor_foto_maske.png)
@@ -23,8 +25,8 @@ Kendi kurduğum masaüstü sahnesinin üç fotoğrafında (normal ışık, gölg
 ├── data/                  # giriş fotoğrafları: normal.jpg, golge.jpg, lamba.jpg
 ├── outputs/               # şekiller (fig0–fig5)
 ├── results/               # ham ölçümler: CSV tablolar + olcumler.json
-├── rapor/                 # rapor.html (kaynak) ve YZM411_Odev1_Rapor.pdf
-└── KAYNAK_BEYANI.md       # yapay zekâ ve kaynak beyanı
+├── rapor/                 # Muhammed_Emin_Erdag_Odev.pdf ve overleaf/ (main.tex + şekiller)
+└── KAYNAK_BEYANI.md       # kaynaklar, araç ve yapay zekâ beyanı
 ```
 
 ## Çalıştırma
@@ -54,6 +56,6 @@ Tüm parametreler (piksel koordinatları, bölgeler, dondurulmuş eşikler, b, �
   - HSV: H 5–16, S ≥ 125, V ≥ 80
 - **Alan oranı:** Maske alan oranı bir doğruluk ölçütü **değildir**.
 
-## Yapay zekâ beyanı
+## Kaynaklar ve yapay zekâ beyanı
 
 Bkz. [`KAYNAK_BEYANI.md`](KAYNAK_BEYANI.md).
