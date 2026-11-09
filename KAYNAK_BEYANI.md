@@ -9,10 +9,11 @@
 ## Araç ve yapay zekâ kullanımı (ödev madde 8.e)
 | | |
 |---|---|
+| **Kendi yaptıklarım** | Sahneyi kurdum; hedef nesneyi (turuncu kalemlik) ve üç ışık koşulunu seçtim; fotoğrafları çektim ve deneye uygunluklarını kontrol ettim; sonuçları ve raporu gözden geçirip tutarsız görünen yerlerin düzeltilmesini istedim. |
 | **Araç** | Claude (Anthropic), Claude Code ortamında |
-| **Kullanım amacı** | Defterdeki tüm kod hücrelerinin yazılması (yükleme, EXIF okuma, SIFT ile hizalama, maskeler, parlaklık/gama, küçültme, tablolar), deney yorumlarının ilk taslağı, eşik türetme yönteminin önerilmesi, rapor (`rapor/overleaf/main.tex` → PDF), `README.md` ve bu dosyanın taslağı |
+| **Kullanım amacı** | Defterdeki kod hücrelerinin yazılması (yükleme, EXIF okuma, SIFT ile hizalama, maskeler, parlaklık/gama, küçültme, tablolar), deney tahmin ve yorumlarının taslağı, eşik türetme ve hizalama yönteminin önerilmesi, rapor (`rapor/overleaf/main.tex` → PDF), `README.md` ve bu dosyanın taslağı |
 | **Etkilediği dosya/hücre** | `odev1.ipynb` (tüm kod ve yorum hücreleri), `odev1.py`, `rapor/overleaf/main.tex`, `rapor/Muhammed_Emin_Erdag_Odev.pdf`, `README.md`, `KAYNAK_BEYANI.md` |
-| **Nasıl doğruladım** | Defteri yeniden başlatıp baştan sona çalıştırdım; `odev1.py` de aynı `results/sonuc_tablosu.csv`'yi üretti. Rapordaki sayıları `results/` altındaki CSV/JSON dosyalarıyla karşılaştırdım; maskeleri ve küçültme şekillerini fotoğraflarla gözle kontrol ettim. |
+| **Nasıl doğrulandı** | Defter yeniden başlatılıp baştan sona çalıştırıldı; `odev1.py` de aynı `results/sonuc_tablosu.csv`'yi üretti. Rapordaki sayılar `results/` altındaki CSV/JSON dosyalarıyla karşılaştırıldı; maskeler ve küçültme şekilleri fotoğraflarla gözle kontrol edildi. |
 
 Deney tahminleri, fotoğraflar çekilmeden ve deneyler çalıştırılmadan önce yazılmıştır. Ölçümlerden sonra değiştirilmemiştir; tutmayan tahminler raporda açıkça belirtilmiştir.
 
