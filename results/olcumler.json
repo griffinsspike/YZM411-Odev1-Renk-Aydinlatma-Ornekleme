@@ -1,0 +1,630 @@
+{
+  "exif": {
+    "Normal ışık": {
+      "dosya": "normal.jpg",
+      "cihaz": "samsung Galaxy A54 5G",
+      "pozlama süresi (s)": "1/33",
+      "ISO": "250",
+      "f": "1.8",
+      "pozlama modu": "otomatik",
+      "beyaz dengesi": "otomatik",
+      "flaş": "0",
+      "tarih": "2026:11:09 20:06:28",
+      "süre×ISO (normal=1)": "1.0"
+    },
+    "Gölge": {
+      "dosya": "golge.jpg",
+      "cihaz": "samsung Galaxy A54 5G",
+      "pozlama süresi (s)": "1/20",
+      "ISO": "400",
+      "f": "1.8",
+      "pozlama modu": "otomatik",
+      "beyaz dengesi": "otomatik",
+      "flaş": "0",
+      "tarih": "2026:11:09 20:06:38",
+      "süre×ISO (normal=1)": "2.64"
+    },
+    "Farklı lamba": {
+      "dosya": "lamba.jpg",
+      "cihaz": "samsung Galaxy A54 5G",
+      "pozlama süresi (s)": "1/33",
+      "ISO": "200",
+      "f": "1.8",
+      "pozlama modu": "otomatik",
+      "beyaz dengesi": "otomatik",
+      "flaş": "0",
+      "tarih": "2026:11:09 20:06:18",
+      "süre×ISO (normal=1)": "0.8"
+    }
+  },
+  "camera_note": "Samsung Galaxy A54 5G ana kamera; otomatik pozlama ve otomatik beyaz dengesi AÇIK, flaş kapalı. Telefon çekimler arasında hafifçe kaydı; gölge ve lamba fotoğrafları normal fotoğrafa homografi ile hizalandı. Bu nedenle 'yalnızca ışık değişti' denemez: kamera kazancı ve renk dengesi de değişti.",
+  "alignment": {
+    "table": [
+      {
+        "fotoğraf": "Gölge",
+        "SIFT eşleşmesi": "1544",
+        "RANSAC iç nokta": "1266",
+        "ölçek": "1.018",
+        "öteleme dx, dy (px)": "(-20, 11)",
+        "geri izdüşüm hatası ortanca (px)": "0.96"
+      },
+      {
+        "fotoğraf": "Farklı lamba",
+        "SIFT eşleşmesi": "1372",
+        "RANSAC iç nokta": "782",
+        "ölçek": "1.036",
+        "öteleme dx, dy (px)": "(-41, -71)",
+        "geri izdüşüm hatası ortanca (px)": "0.86"
+      }
+    ],
+    "common_fraction": 0.9976766423129761,
+    "homographies": {
+      "normal": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "golge": [
+        [
+          1.016946,
+          0.003512,
+          -20.055877
+        ],
+        [
+          -0.001784,
+          1.018269,
+          11.1773
+        ],
+        [
+          0.0,
+          1e-06,
+          1.0
+        ]
+      ],
+      "lamba": [
+        [
+          1.040125,
+          -0.019711,
+          -41.284675
+        ],
+        [
+          0.010755,
+          1.031275,
+          -71.158753
+        ],
+        [
+          -2e-06,
+          -5e-06,
+          1.0
+        ]
+      ]
+    }
+  },
+  "exposure_gain_rel_normal": {
+    "normal": 1.0,
+    "golge": 2.6400000264,
+    "lamba": 0.7999999999999999
+  },
+  "H1": {
+    "shape": [
+      4080,
+      1884,
+      3
+    ],
+    "dtype": "uint8",
+    "min": 0,
+    "max": 255,
+    "pixels": [
+      {
+        "piksel": "P1",
+        "fotoğraf": "Normal ışık",
+        "x": "1250",
+        "y": "1850",
+        "özgün fotoğrafta (x, y)": "(1250, 1850)",
+        "RGB (tek piksel)": "(159, 74, 35)",
+        "RGB (5x5 ort.)": "(165, 80, 40)",
+        "HSV (tek piksel)": "(9, 199, 159)",
+        "parlaklık oranı (R+G+B)/normal": "1.0"
+      },
+      {
+        "piksel": "P1",
+        "fotoğraf": "Gölge",
+        "x": "1250",
+        "y": "1850",
+        "özgün fotoğrafta (x, y)": "(1245, 1812)",
+        "RGB (tek piksel)": "(137, 81, 66)",
+        "RGB (5x5 ort.)": "(132, 77, 62)",
+        "HSV (tek piksel)": "(6, 132, 137)",
+        "parlaklık oranı (R+G+B)/normal": "0.95"
+      },
+      {
+        "piksel": "P1",
+        "fotoğraf": "Farklı lamba",
+        "x": "1250",
+        "y": "1850",
+        "özgün fotoğrafta (x, y)": "(1262, 1829)",
+        "RGB (tek piksel)": "(198, 108, 56)",
+        "RGB (5x5 ort.)": "(195, 107, 55)",
+        "HSV (tek piksel)": "(11, 183, 198)",
+        "parlaklık oranı (R+G+B)/normal": "1.25"
+      },
+      {
+        "piksel": "P2",
+        "fotoğraf": "Normal ışık",
+        "x": "1650",
+        "y": "2300",
+        "özgün fotoğrafta (x, y)": "(1650, 2300)",
+        "RGB (tek piksel)": "(136, 61, 22)",
+        "RGB (5x5 ort.)": "(140, 66, 27)",
+        "HSV (tek piksel)": "(10, 214, 136)",
+        "parlaklık oranı (R+G+B)/normal": "1.0"
+      },
+      {
+        "piksel": "P2",
+        "fotoğraf": "Gölge",
+        "x": "1650",
+        "y": "2300",
+        "özgün fotoğrafta (x, y)": "(1639, 2257)",
+        "RGB (tek piksel)": "(114, 66, 44)",
+        "RGB (5x5 ort.)": "(108, 60, 38)",
+        "HSV (tek piksel)": "(9, 157, 114)",
+        "parlaklık oranı (R+G+B)/normal": "0.88"
+      },
+      {
+        "piksel": "P2",
+        "fotoğraf": "Farklı lamba",
+        "x": "1650",
+        "y": "2300",
+        "özgün fotoğrafta (x, y)": "(1646, 2250)",
+        "RGB (tek piksel)": "(122, 59, 26)",
+        "RGB (5x5 ort.)": "(124, 60, 28)",
+        "HSV (tek piksel)": "(10, 201, 122)",
+        "parlaklık oranı (R+G+B)/normal": "0.91"
+      },
+      {
+        "piksel": "P3",
+        "fotoğraf": "Normal ışık",
+        "x": "1400",
+        "y": "2900",
+        "özgün fotoğrafta (x, y)": "(1400, 2900)",
+        "RGB (tek piksel)": "(122, 48, 11)",
+        "RGB (5x5 ort.)": "(134, 60, 25)",
+        "HSV (tek piksel)": "(10, 232, 122)",
+        "parlaklık oranı (R+G+B)/normal": "1.0"
+      },
+      {
+        "piksel": "P3",
+        "fotoğraf": "Gölge",
+        "x": "1400",
+        "y": "2900",
+        "özgün fotoğrafta (x, y)": "(1391, 2849)",
+        "RGB (tek piksel)": "(108, 57, 36)",
+        "RGB (5x5 ort.)": "(111, 61, 39)",
+        "HSV (tek piksel)": "(9, 170, 108)",
+        "parlaklık oranı (R+G+B)/normal": "0.96"
+      },
+      {
+        "piksel": "P3",
+        "fotoğraf": "Farklı lamba",
+        "x": "1400",
+        "y": "2900",
+        "özgün fotoğrafta (x, y)": "(1417, 2819)",
+        "RGB (tek piksel)": "(129, 72, 45)",
+        "RGB (5x5 ort.)": "(115, 57, 31)",
+        "HSV (tek piksel)": "(10, 166, 129)",
+        "parlaklık oranı (R+G+B)/normal": "0.93"
+      }
+    ]
+  },
+  "H2": {
+    "OBJ_ROI": [
+      1350,
+      2000,
+      250,
+      250
+    ],
+    "OBJ_BOX": [
+      1090,
+      1580,
+      790,
+      1680
+    ],
+    "RGB_LO": [
+      115,
+      30,
+      0
+    ],
+    "RGB_HI": [
+      230,
+      145,
+      95
+    ],
+    "HSV_LO": [
+      5,
+      125,
+      80
+    ],
+    "HSV_HI": [
+      16,
+      255,
+      255
+    ],
+    "roi_rgb_p2_p50_p98": [
+      [
+        141.0,
+        53.0,
+        6.0
+      ],
+      [
+        175.0,
+        87.0,
+        41.0
+      ],
+      [
+        206.0,
+        118.0,
+        70.0
+      ]
+    ],
+    "roi_hsv_p2_p50_p98": [
+      [
+        10.0,
+        167.0,
+        141.0
+      ],
+      [
+        10.0,
+        195.0,
+        175.0
+      ],
+      [
+        11.0,
+        244.0,
+        206.0
+      ]
+    ],
+    "masks": [
+      {
+        "fotoğraf": "Normal ışık",
+        "uzay": "RGB",
+        "seçilen piksel": 1575293,
+        "alan oranı (%)": 20.541,
+        "OBJ_ROI içinde seçilen (%)": 100.0,
+        "seçilenlerin nesne kutusu dışındaki payı (%)": 32.6
+      },
+      {
+        "fotoğraf": "Normal ışık",
+        "uzay": "HSV",
+        "seçilen piksel": 1593326,
+        "alan oranı (%)": 20.777,
+        "OBJ_ROI içinde seçilen (%)": 100.0,
+        "seçilenlerin nesne kutusu dışındaki payı (%)": 28.1
+      },
+      {
+        "fotoğraf": "Gölge",
+        "uzay": "RGB",
+        "seçilen piksel": 725444,
+        "alan oranı (%)": 9.46,
+        "OBJ_ROI içinde seçilen (%)": 57.8,
+        "seçilenlerin nesne kutusu dışındaki payı (%)": 2.4
+      },
+      {
+        "fotoğraf": "Gölge",
+        "uzay": "HSV",
+        "seçilen piksel": 1102782,
+        "alan oranı (%)": 14.38,
+        "OBJ_ROI içinde seçilen (%)": 100.0,
+        "seçilenlerin nesne kutusu dışındaki payı (%)": 3.9
+      },
+      {
+        "fotoğraf": "Farklı lamba",
+        "uzay": "RGB",
+        "seçilen piksel": 878519,
+        "alan oranı (%)": 11.456,
+        "OBJ_ROI içinde seçilen (%)": 99.8,
+        "seçilenlerin nesne kutusu dışındaki payı (%)": 21.7
+      },
+      {
+        "fotoğraf": "Farklı lamba",
+        "uzay": "HSV",
+        "seçilen piksel": 1153656,
+        "alan oranı (%)": 15.043,
+        "OBJ_ROI içinde seçilen (%)": 100.0,
+        "seçilenlerin nesne kutusu dışındaki payı (%)": 8.4
+      }
+    ],
+    "roi_median": [
+      {
+        "fotoğraf": "Normal ışık",
+        "R": 175,
+        "G": 87,
+        "B": 41,
+        "H": 10,
+        "S": 195,
+        "V": 175
+      },
+      {
+        "fotoğraf": "Gölge",
+        "R": 117,
+        "G": 65,
+        "B": 43,
+        "H": 9,
+        "S": 162,
+        "V": 117
+      },
+      {
+        "fotoğraf": "Farklı lamba",
+        "R": 171,
+        "G": 88,
+        "B": 41,
+        "H": 11,
+        "S": 194,
+        "V": 171
+      }
+    ],
+    "common_area_px": 7668861,
+    "regions": {
+      "REGIONS": {
+        "kalemlik": [
+          1090,
+          1580,
+          790,
+          1680
+        ],
+        "kupa (çay)": [
+          180,
+          2780,
+          900,
+          1020
+        ],
+        "kitap": [
+          160,
+          400,
+          1510,
+          990
+        ],
+        "üst ahşap": [
+          0,
+          0,
+          1884,
+          380
+        ]
+      },
+      "table": [
+        {
+          "fotoğraf": "Normal ışık",
+          "uzay": "RGB",
+          "kalemlik": 67.4,
+          "kupa (çay)": 26.9,
+          "kitap": 1.3,
+          "üst ahşap": 0.0,
+          "diğer": 4.4
+        },
+        {
+          "fotoğraf": "Normal ışık",
+          "uzay": "HSV",
+          "kalemlik": 71.9,
+          "kupa (çay)": 26.2,
+          "kitap": 0.1,
+          "üst ahşap": 0.0,
+          "diğer": 1.8
+        },
+        {
+          "fotoğraf": "Gölge",
+          "uzay": "RGB",
+          "kalemlik": 97.6,
+          "kupa (çay)": 0.1,
+          "kitap": 0.2,
+          "üst ahşap": 0.0,
+          "diğer": 2.1
+        },
+        {
+          "fotoğraf": "Gölge",
+          "uzay": "HSV",
+          "kalemlik": 96.1,
+          "kupa (çay)": 1.7,
+          "kitap": 0.0,
+          "üst ahşap": 0.0,
+          "diğer": 2.2
+        },
+        {
+          "fotoğraf": "Farklı lamba",
+          "uzay": "RGB",
+          "kalemlik": 78.3,
+          "kupa (çay)": 8.5,
+          "kitap": 6.9,
+          "üst ahşap": 4.7,
+          "diğer": 1.7
+        },
+        {
+          "fotoğraf": "Farklı lamba",
+          "uzay": "HSV",
+          "kalemlik": 91.6,
+          "kupa (çay)": 6.9,
+          "kitap": 0.5,
+          "üst ahşap": 0.0,
+          "diğer": 1.0
+        }
+      ]
+    },
+    "kalemlik_area_pct": {
+      "Normal ışık|RGB": 13.84,
+      "Normal ışık|HSV": 14.94,
+      "Gölge|RGB": 9.23,
+      "Gölge|HSV": 13.82,
+      "Farklı lamba|RGB": 8.97,
+      "Farklı lamba|HSV": 13.78
+    }
+  },
+  "H3": {
+    "mean_original": 111.32330274377975,
+    "prediction": {
+      "b=+40": 151.32330274377975,
+      "γ=0.5": 168.4857329261556,
+      "γ=2.0": 48.59952052464016
+    },
+    "table": [
+      {
+        "dönüşüm": "özgün",
+        "ön tahmin (ortalama)": 111.32,
+        "ölçülen ortalama": 111.32,
+        "fark (ölçülen − tahmin)": 0.0,
+        "255'teki değer (%)": 0.01,
+        "0'daki değer (%)": 0.34,
+        "std": 54.47
+      },
+      {
+        "dönüşüm": "b=+40",
+        "ön tahmin (ortalama)": 151.32,
+        "ölçülen ortalama": 151.3,
+        "fark (ölçülen − tahmin)": -0.03,
+        "255'teki değer (%)": 0.46,
+        "0'daki değer (%)": 0.0,
+        "std": 54.42
+      },
+      {
+        "dönüşüm": "γ=0.5",
+        "ön tahmin (ortalama)": 168.49,
+        "ölçülen ortalama": 162.22,
+        "fark (ölçülen − tahmin)": -6.26,
+        "255'teki değer (%)": 0.01,
+        "0'daki değer (%)": 0.34,
+        "std": 45.46
+      },
+      {
+        "dönüşüm": "γ=2.0",
+        "ön tahmin (ortalama)": 48.6,
+        "ölçülen ortalama": 60.22,
+        "fark (ölçülen − tahmin)": 11.62,
+        "255'teki değer (%)": 0.01,
+        "0'daki değer (%)": 1.92,
+        "std": 50.3
+      }
+    ],
+    "clip_fraction_b40": 0.003914413429915491,
+    "expected_mean_b40_with_clip": 151.2955322265625
+  },
+  "H4": {
+    "TEXT_ROI": [
+      348,
+      1900,
+      400,
+      400
+    ],
+    "factor": 4,
+    "letter_height_px": 12.0,
+    "letter_height_after_px": 3.0,
+    "hf_energy_fraction": 0.21622495901170455,
+    "nearest_vs_area_mad": 15.3978,
+    "table": [
+      {
+        "görüntü": "özgün kesit",
+        "boyut": "400x400",
+        "MSE": 0.0,
+        "PSNR (dB)": null,
+        "mürekkep koyuluğu P1": 31.0,
+        "kâğıt P99": 217.0,
+        "kontrast (std)": 48.6,
+        "Laplace varyansı": 2055.4
+      },
+      {
+        "görüntü": "NEAREST küçük",
+        "boyut": "100x100",
+        "MSE": null,
+        "PSNR (dB)": null,
+        "mürekkep koyuluğu P1": 32.0,
+        "kâğıt P99": 218.0,
+        "kontrast (std)": 48.7,
+        "Laplace varyansı": 23106.5
+      },
+      {
+        "görüntü": "AREA küçük",
+        "boyut": "100x100",
+        "MSE": null,
+        "PSNR (dB)": null,
+        "mürekkep koyuluğu P1": 49.0,
+        "kâğıt P99": 200.0,
+        "kontrast (std)": 41.4,
+        "Laplace varyansı": 6926.6
+      },
+      {
+        "görüntü": "NEAREST ↑ en yakın komşu",
+        "boyut": "400x400",
+        "MSE": 1607.5,
+        "PSNR (dB)": 16.07,
+        "mürekkep koyuluğu P1": 32.0,
+        "kâğıt P99": 218.0,
+        "kontrast (std)": 48.7,
+        "Laplace varyansı": 2876.7
+      },
+      {
+        "görüntü": "AREA ↑ en yakın komşu",
+        "boyut": "400x400",
+        "MSE": 650.2,
+        "PSNR (dB)": 20.0,
+        "mürekkep koyuluğu P1": 49.0,
+        "kâğıt P99": 200.0,
+        "kontrast (std)": 41.4,
+        "Laplace varyansı": 974.8
+      },
+      {
+        "görüntü": "AREA ↑ bikübik (ek)",
+        "boyut": "400x400",
+        "MSE": 584.9,
+        "PSNR (dB)": 20.46,
+        "mürekkep koyuluğu P1": 49.0,
+        "kâğıt P99": 203.0,
+        "kontrast (std)": 40.5,
+        "Laplace varyansı": 46.6
+      }
+    ]
+  },
+  "params": {
+    "FILES": {
+      "normal": "normal.jpg",
+      "golge": "golge.jpg",
+      "lamba": "lamba.jpg"
+    },
+    "PIXELS": [
+      [
+        1250,
+        1850
+      ],
+      [
+        1650,
+        2300
+      ],
+      [
+        1400,
+        2900
+      ]
+    ],
+    "NEIGH": 2,
+    "B_SHIFT": 40,
+    "GAMMAS": [
+      0.5,
+      2.0
+    ],
+    "FACTOR": 4
+  },
+  "versions": {
+    "python": "3.13.12",
+    "numpy": "2.4.4",
+    "opencv": "5.0.0",
+    "matplotlib": "3.10.9",
+    "pandas": "3.0.2",
+    "pillow": "12.2.0"
+  }
+}

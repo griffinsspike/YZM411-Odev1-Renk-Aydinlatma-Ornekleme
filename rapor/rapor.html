@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>YZM411 Ödev 1 Raporu</title>
+<style>
+  @page { size: A4; margin: 9mm 10mm 9mm 10mm; }
+  * { box-sizing: border-box; }
+  body { font-family: "Segoe UI", Calibri, Arial, sans-serif; font-size: 7.9pt; line-height: 1.28; color: #111; margin: 0; }
+  h1 { font-size: 12pt; margin: 0 0 1mm 0; }
+  h2 { font-size: 9pt; margin: 2mm 0 0.8mm 0; padding-bottom: 0.3mm; border-bottom: 0.6px solid #888; }
+  p { margin: 0.6mm 0; }
+  .meta { font-size: 7.6pt; color: #333; margin-bottom: 1mm; }
+  img { display: block; width: 100%; }
+  .cap { font-size: 6.9pt; color: #444; margin: 0.4mm 0 1mm 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 7pt; margin: 0.6mm 0 1mm 0; }
+  th, td { border: 0.5px solid #999; padding: 0.35mm 1mm; text-align: left; vertical-align: top; }
+  th { background: #e8e8e8; }
+  td.n { text-align: right; white-space: nowrap; }
+  .two { display: flex; gap: 3mm; }
+  .two > div { flex: 1; min-width: 0; }
+  .pb { break-before: page; }
+  .k { font-weight: 600; }
+  .bad { color: #a00; font-weight: 600; }
+  .ok { color: #060; font-weight: 600; }
+  ul { margin: 0.4mm 0 0.6mm 4mm; padding: 0; }
+  li { margin: 0.2mm 0; }
+  code { font-family: Consolas, monospace; font-size: 7pt; }
+</style>
+</head>
+<body>
+
+<h1>YZM 411 Bilgisayarlı Görü — Ödev 1: Renk, Aydınlatma ve Örnekleme</h1>
+<div class="meta"><b>Öğrenci:</b> Ad Soyad &nbsp;|&nbsp; <b>No:</b> OgrenciNo &nbsp;|&nbsp; <b>Kod:</b> <code>odev1.ipynb</code> (Restart &amp; Run All) &nbsp;|&nbsp; <b>Ham sonuçlar:</b> <code>results/*.csv</code>, <code>results/olcumler.json</code></div>
+
+<p><span class="k">Sahne ve çekim.</span> Hedef nesne turuncu kumaş kalemlik. Yanında beyaz A4 kâğıt, küçük puntolu yazısı olan bir iskambil kartı, sarı-mor bir kitap ve içinde turuncu çay olan bir kupa var; masa çizgili ahşap.
+Üç fotoğraf Samsung Galaxy A54 ile 10 s arayla çekildi: normal oda ışığı, gölge (sahneye düşen ışık engellendi) ve sıcak renkli masa lambası.
+EXIF'e göre <b>otomatik pozlama ve otomatik beyaz dengesi açıktı</b>. Pozlama süresi × ISO, normale göre gölgede <b>2,64×</b>, lambada 0,80× oldu. Bu yüzden <b>"yalnızca ışık değişti" diyemiyorum</b>: kamera kazancı ve renk dengesi de değişti.
+Telefon çekimler arasında biraz kaydı. Gölge ve lamba fotoğraflarını normale SIFT + RANSAC homografisiyle hizaladım (ölçek 1,018 / 1,036; ortanca hata 0,96 / 0,86 px). Hizalamada <code>INTER_NEAREST</code> kullandığım için yeni renk değeri üretilmedi. Alan oranlarını üç fotoğrafın ortak görüş alanı (karenin %99,8'i) üzerinden hesapladım.</p>
+
+<img src="../outputs/fig5_rapor_foto_maske.png" alt="Üç özgün fotoğraf ve altı maske">
+<div class="cap"><b>Şekil 1.</b> Üç özgün fotoğraf (hizalanmış) ve aynı dondurulmuş eşiklerle elde edilen altı maske. Başlıktaki yüzde, maskenin ortak görüş alanına oranıdır (doğruluk değildir).
+Eşikler normal ışıktaki 250×250 px kalemlik bölgesinin %2–98 aralığından türetildi ve <b>bir kez dondurulup değiştirilmedi</b>: <b>RGB</b> R 115–230, G 30–145, B 0–95; <b>HSV</b> H 5–16, S ≥ 125, V ≥ 80 (OpenCV, H 0–179).</div>
+
+<div class="two">
+<div>
+<h2>1. Sayısal yapı (H1)</h2>
+<p><code>img.shape = (4080, 1884, 3)</code>, <code>uint8</code>, değer aralığı 0–255. Erişim <code>img[y, x, kanal]</code> şeklinde: P1 için <code>img[1850, 1250]</code> OpenCV'de (B, G, R) = (35, 74, 159) verdi; <code>cvtColor(BGR2RGB)</code> sonrası (159, 74, 35). <code>img[x, y]</code> yazınca başka bir piksel okundu.</p>
+<table>
+<tr><th>Piksel (x, y), 5×5 ort.</th><th>Normal (R,G,B)</th><th>Gölge</th><th>Lamba</th></tr>
+<tr><td>P1 (1250, 1850)</td><td>165, 80, 40</td><td>132, 77, <b>62</b></td><td>195, 107, 55</td></tr>
+<tr><td>P2 (1650, 2300)</td><td>140, 66, 27</td><td>108, 60, <b>38</b></td><td>124, 60, 28</td></tr>
+<tr><td>P3 (1400, 2900)</td><td>134, 60, 25</td><td>111, 61, <b>39</b></td><td>115, 57, 31</td></tr>
+</table>
+<p><span class="k">Tahmin:</span> Gölgede R, G ve B birlikte düşecek; sıcak lambada B orantısız düşecek.
+<span class="k">Ölçüm:</span> Gölgede R düştü, G yaklaşık sabit kaldı, <b>B arttı</b>. Lambada üç kanal da arttı; kalemliğin ortanca rengi (175, 87, 41) → (171, 88, 41) ile neredeyse aynı kaldı. <span class="bad">İki tahmin de tutmadı.</span></p>
+<p><span class="k">Ne gördüm / neden / kontrol:</span> Gölgedeki yüzey doğrudan ışık yerine mavimsi dağınık ortam ışığıyla aydınlanıyor; kamera da kazancı 2,64× artırarak karanlığı kısmen telafi etti. Lambada otomatik beyaz dengesi sıcak ışığı nötrledi; geriye yalnızca konuma bağlı parlaklık farkı kaldı (lamba sol üstte: P1 1,25×, P2 0,91×).
+<i>Kontrol:</i> Pro modda ISO, enstantane ve WB kilitli olarak yeniden çekip aynı pikselleri ölçmek.</p>
+</div>
+<div>
+<h2>2. Sabit RGB / HSV eşikleri (H2)</h2>
+<table>
+<tr><th>Fotoğraf</th><th>Uzay</th><th>Alan oranı</th><th>Ref. bölge kaps.</th><th>Seçimlerin geldiği yer</th></tr>
+<tr><td>Normal</td><td>RGB</td><td class="n">%20,54</td><td class="n">%100</td><td>kalemlik %67, <b>çay %27</b></td></tr>
+<tr><td>Normal</td><td>HSV</td><td class="n">%20,78</td><td class="n">%100</td><td>kalemlik %72, <b>çay %26</b></td></tr>
+<tr><td>Gölge</td><td>RGB</td><td class="n">%9,46</td><td class="n"><b>%57,8</b></td><td>kalemlik %98</td></tr>
+<tr><td>Gölge</td><td>HSV</td><td class="n">%14,38</td><td class="n">%100</td><td>kalemlik %96</td></tr>
+<tr><td>Lamba</td><td>RGB</td><td class="n">%11,46</td><td class="n">%99,8</td><td>kalemlik %78, çay %9, <b>kitap %7, ahşap %5</b></td></tr>
+<tr><td>Lamba</td><td>HSV</td><td class="n">%15,04</td><td class="n">%100</td><td>kalemlik %92, çay %7, ahşap %0</td></tr>
+</table>
+<p><span class="k">Tahmin:</span> Gölgede RGB maskesi küçülecek, HSV ton kanalı sayesinde daha az etkilenecek; lambada açık renkli yüzeyler eşiği geçecek.
+<span class="k">Ölçüm:</span> Gölgede RGB maskesi %20,5'ten %9,5'e düştü ve referans bölgenin yalnızca %58'ini seçti; HSV %100 kapsamayı korudu. <span class="ok">Tuttu.</span>
+Lambada kâğıt değil, <b>ahşap ve kitap</b> eşiği geçti, o da yalnızca RGB'de. <span class="k">Kısmen tuttu.</span></p>
+<p><span class="k">Ne gördüm / neden:</span> Gölgede kalemliğin ortancası (175, 87, 41) → (117, 65, 43) oldu; R alt eşik 115'e dayandı. HSV'de ton sabit kaldı (H 10 → 9), ama S 195 → 162'ye, P1'de 132'ye indi. Bu değer S ≥ 125 sınırına çok yakın: <b>HSV'yi yalnızca bıraktığım pay kurtardı</b>, HSV her aydınlatma değişimine dayanıklı değil.
+HSV alanının %20,8'den %14,4'e düşüşünün çoğu kalemlikten değil, gölgede karardığı için seçilmeyen <b>çaydan</b> geliyor: yalnızca kalemlik kutusunda HSV oranı %14,9 → %13,8. Alan oranı doğruluk değildir.
+<i>Kontrol:</i> S ve V alt eşiklerini değiştirip HSV kapsamının hangi değerde çöktüğünü ölçmek; çayı ayırmak için şekil ölçütü (en–boy oranı, doluluk) eklemek.</p>
+</div>
+</div>
+
+<div class="pb"></div>
+<div class="two">
+<div style="flex:1.05">
+<h2>3. Parlaklık ve gama (H3)</h2>
+<img src="../outputs/fig3_parlaklik_gama.png" alt="Parlaklık ve gama">
+<div class="cap"><b>Şekil 2.</b> <code>J = clip(I + 40)</code> ve <code>J = 255·(I/255)^γ</code>; dönüşümler float üzerinde yapıldı, [0, 255]'e kırpıldı, yuvarlandı. Kırmızı çizgi ortalamayı gösterir.</div>
+<table>
+<tr><th>Dönüşüm</th><th>Ön tahmin (ortalama)</th><th>Ölçülen</th><th>255'te kırpılan</th></tr>
+<tr><td>Özgün</td><td class="n">—</td><td class="n">111,32</td><td class="n">%0,01</td></tr>
+<tr><td>b = +40</td><td class="n">151,32</td><td class="n">151,30</td><td class="n">%0,46</td></tr>
+<tr><td>γ = 0,5</td><td class="n">168,49</td><td class="n">162,22</td><td class="n">%0,01</td></tr>
+<tr><td>γ = 2,0</td><td class="n">48,60</td><td class="n">60,22</td><td class="n">%0,01</td></tr>
+</table>
+<p><span class="k">Tahmin:</span> +40 kaydırması 255'te kırpılma yüzünden ortalamayı 40'tan az artıracak ve en çok beyaz kâğıt kırpılacak. Gama sonrası ortalama ≈ 255·(m/255)^γ olacak.
+<span class="k">Ölçüm:</span> Artış +39,98 oldu; 215'i aşan kanal değerlerinin oranı yalnızca %0,39. <span class="bad">Tahmin tutmadı.</span> Gamada yön doğru çıktı, ama ortalama tahminden −6,3 ve +11,6 saptı. <span class="bad">Tutmadı.</span> Tek değer kontrolü beklendiği gibi: 64 → 127,7 (γ = 0,5) ve 16,1 (γ = 2,0).</p>
+<p><span class="k">Neden / kontrol:</span> Otomatik pozlama beyaz kâğıdı bile ~190'da tuttuğu için +40 neredeyse hiç kırpılmadı. Gama doğrusal olmadığı için ortalamanın gaması, gamaların ortalamasına eşit değil (Jensen eşitsizliği): içbükey γ = 0,5'te ortalama tahminin altında, dışbükey γ = 2'de üstünde kalır.
+Tahmini piksel dağılımı üzerinden yeniden hesapladım: <code>mean(min(I+40,255)) = 151,30</code> ve <code>mean(255·(I/255)^γ) = 162,24 / 60,24</code>; ikisi de ölçümle örtüşüyor.</p>
+</div>
+<div style="flex:0.95">
+<h2>4. 1/4 küçültme (H4)</h2>
+<img src="../outputs/fig4_kucultme.png" alt="Küçültme karşılaştırması">
+<div class="cap"><b>Şekil 3.</b> Karttaki 400×400 px kesit; <code>INTER_NEAREST</code> ve <code>INTER_AREA</code> ile 100×100'e küçültüldü, yalnızca gösterim için en yakın komşuyla geri büyütüldü. Alt satır: "MADE IN U.S.A." yakın planı.</div>
+<p><span class="k">Tahmin:</span> Harfler 2–3 px'e inip okunamayacak. NEAREST çizgileri koparıp sahte desen, AREA gri/bulanık yazı üretecek. Büyütme ayrıntıyı geri getirmeyecek.
+<span class="k">Ölçüm:</span> Harf yüksekliği ≈ 12 → 3 px; yazı iki yöntemde de okunamıyor. NEAREST, kartın ince keten dokusunu çapraz damalı <b>sahte bir desene</b> çevirdi; küçük görüntünün Laplace varyansı AREA'nınkinin 3,3 katı (keskinlik değil, örtüşme). AREA dokuyu sildi ve yazıyı griye çevirdi: mürekkep P1 31 → 49, kontrast (std) 48,6 → 41,4. <span class="ok">Tuttu.</span></p>
+</div>
+</div>
+
+<h2>İki soru</h2>
+<p><span class="k">"Sarı bir arka plan neden hedef gibi seçildi?"</span> Kamera nesneyi değil, ondan yansıyan ışığı ölçer. Lambada normalde griye yakın olan ahşap (H 42, S 23) sıcak ışıkla turuncumsuya döndü (H 12, S 61).
+RGB eşiği her kanalı ayrı ayrı sınırlar ve "ne kadar renkli" olduğunu sormaz; bu yüzden soluk turuncu ahşabın 40 885 pikseli (ortanca 124, 102, 92) kutunun içine düştü. Kitaptaki sarı-turuncu bölgeler de aynı şekilde seçildi. HSV'deki S ≥ 125 koşulu bu solukluğu reddetti.
+Normal ışıkta ise çay (H 7) kalemlikle (H 10) gerçekten aynı tonda olduğu için iki uzayda da seçildi. Eşik <b>renkli bölgeyi</b> bulur, <b>nesneyi</b> değil.</p>
+<p><span class="k">"Büyütme kaybolan yazıyı neden geri getirmedi?"</span> 1/4 örneklemede temsil edilebilen en yüksek frekans 0,125 devir/pikseldir; kesitteki enerjinin <b>%21,6'sı</b> bu sınırın üstündeydi ve 160 000 pikselden 10 000'i kaldı.
+En yakın komşu büyütmesi her pikseli 4×4 blok olarak kopyalar, yeni bilgi eklemez. PSNR: NEAREST → NN 16,1 dB, AREA → NN 20,0 dB, AREA → bikübik 20,5 dB. Bikübik yalnızca blok kenarlarını yumuşatıyor; harf ayrıntısı küçük görüntüde hiç olmadığı için geri gelmiyor. <i>Kontrol:</i> NEAREST'ten önce Gauss bulanıklığı uygulayıp sahte desenin kaybolduğunu ölçmek; 1/2 ve 1/3 oranlarında okunabilirlik sınırını bulmak.</p>
+
+<h2>Tahmin – ölçüm özeti (<code>results/sonuc_tablosu.csv</code>)</h2>
+<table>
+<tr><th>Deney</th><th>Tahmin</th><th>Ölçüm</th><th>Tuttu mu?</th></tr>
+<tr><td>H1</td><td>Gölgede R, G, B birlikte düşer</td><td>P1 (165,80,40) → (132,77,62): R↓, G≈, B↑</td><td class="bad">Tutmadı</td></tr>
+<tr><td>H1</td><td>Sıcak lambada B orantısız düşer</td><td>Kalemlik ortancası (175,87,41) → (171,88,41)</td><td class="bad">Tutmadı (oto. WB)</td></tr>
+<tr><td>H2</td><td>Gölgede RGB küçülür, HSV daha az</td><td>RGB %20,5 → %9,5 (ref. %58); HSV %20,8 → %14,4 (ref. %100)</td><td class="ok">Tuttu</td></tr>
+<tr><td>H2</td><td>Lambada açık yüzeyler eşiği geçer</td><td>RGB'de ahşap %4,7 + kitap %6,9; HSV'de ahşap %0</td><td>Kısmen</td></tr>
+<tr><td>H3</td><td>+40 artışı 40'tan az olur (kırpma)</td><td>111,32 → 151,30; kırpılan %0,39</td><td class="bad">Tutmadı</td></tr>
+<tr><td>H3</td><td>Ortalama ≈ 255·(m/255)^γ</td><td>168,5 → 162,2 (γ=0,5); 48,6 → 60,2 (γ=2)</td><td class="bad">Tutmadı (yön doğru)</td></tr>
+<tr><td>H4</td><td>Harfler 2–3 px olur, okunmaz</td><td>12 → 3 px, okunamıyor</td><td class="ok">Tuttu</td></tr>
+<tr><td>H4</td><td>NEAREST sahte desen, AREA gri yazı</td><td>Damalı doku deseni; mürekkep P1 31 → 49</td><td class="ok">Tuttu</td></tr>
+<tr><td>H4</td><td>Büyütme ayrıntıyı geri getirmez</td><td>PSNR 16,1 / 20,0 / 20,5 dB; kayıp enerji %21,6</td><td class="ok">Tuttu</td></tr>
+</table>
+
+<h2>Sınırlar</h2>
+<ul>
+<li>Otomatik pozlama ve beyaz dengesi açıktı; her koşulda yalnızca bir fotoğraf var, bu yüzden sonuçlar istatistiksel değil, gözlemseldir.</li>
+<li>Gölge sahneye tam homojen düşmedi; elle çizilen bölgeler (<code>REGIONS</code>) ve hizalama ±1 px hata içerir; JPEG sıkıştırması da renkleri hafifçe değiştirir.</li>
+<li>Maske alan oranı ve bölge payları "eşiği geçen piksel" ölçüsüdür; nesne tespit doğruluğu olarak yorumlanmamalıdır.</li>
+</ul>
+
+<h2>Yapay zekâ ve kaynak beyanı</h2>
+<p><b>Araç:</b> Claude (Anthropic), Claude Code ortamında. <b>Kullanım amacı:</b> <code>odev1.ipynb</code> defterindeki tüm kod hücrelerinin (yükleme, hizalama, maskeler, dönüşümler, küçültme, tablolar) ve deney yorumlarının ilk taslağının yazılması, eşik türetme yönteminin önerilmesi, bu rapor ve <code>README.md</code> taslağının hazırlanması.
+<b>Etkilediği dosyalar:</b> <code>odev1.ipynb</code>, <code>odev1.py</code>, <code>rapor/rapor.html</code> / PDF, <code>README.md</code>.
+<b>Doğrulama:</b> Defter yeniden başlatılıp baştan sona çalıştırıldı. Rapordaki her sayı <code>results/</code> altındaki CSV/JSON dosyalarıyla karşılaştırıldı, şekiller fotoğraflarla gözle kontrol edildi.
+Fotoğrafları kendim çektim ve sahneyi kendim kurdum. Kaynak: YZM411 Hafta 1–2 ders notları; OpenCV ve NumPy belgeleri.</p>
+
+</body>
+</html>

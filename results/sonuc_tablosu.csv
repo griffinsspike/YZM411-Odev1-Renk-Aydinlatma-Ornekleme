@@ -1,0 +1,10 @@
+﻿deney,tahmin,ölçüm,tuttu mu?
+H1,"Gölgede aynı pikselin R, G, B'si birlikte düşecek","P1: (165, 80, 40) → (132, 77, 62) (R↓, G≈, B↑)",Tutmadı
+H1,Sıcak lambada B kanalı orantısız düşecek,"P1: (165, 80, 40) → (195, 107, 55); kalemlik ortancası (175, 87, 41) → (171, 88, 41)",Tutmadı (otomatik beyaz dengesi)
+H2,"Gölgede RGB maskesi küçülecek, HSV daha az etkilenecek",RGB %20.5→%9.5 (ROI kapsaması %58); HSV %20.8→%14.4 (ROI %100),Tuttu
+H2,Lambada açık renkli yüzeyler eşiği geçecek,"RGB: seçimlerin %4.7 üst ahşap, %6.9 kitap; HSV: ahşap %0.0","Kısmen (kâğıt değil ahşap, yalnızca RGB)"
+H3,"b=+40'ta artış 40'tan az olacak, kâğıt kırpılacak",111.32 → 151.3; kırpılan %0.39,Tutmadı
+H3,Gama ortalaması ≈ 255·(m/255)^γ olacak,"γ=0,5: 168.49 → 162.22; γ=2: 48.6 → 60.22",Tutmadı (yön doğru)
+H4,"Harfler 2–3 px'e inecek, yazı okunamayacak",12 px → 3 px; okunamıyor,Tuttu
+H4,"NEAREST sahte desen, AREA gri/bulanık yazı üretecek",NEAREST dokuda damalı desen; AREA mürekkep P1 31.0→49.0,Tuttu
+H4,Büyütme kaybolan ayrıntıyı geri getirmeyecek,"PSNR: NN 16.07 dB, AREA 20.0 dB, bikübik 20.46 dB; kayıp enerji %21.6",Tuttu
